@@ -2,25 +2,10 @@ package org.wildstang.yearly.subsystems;
 
 import org.wildstang.framework.config.Config;
 /* Please edit!!!
- * This program does all these things
- * reads INTAKE_BOLDER_SENSOR. INTAKE_BOLDER_SENSOR = intakeSensorReading.
- * intakeSensorReading stops rollerMovingIn unless manRollerInOverrideCurrentState is true and manRollerInOverrideOldState is false.
- * 
- * reads MAN_LEFT_JOYSTICK_Y. MAN_LEFT_JOYSTICK_Y = manLeftJoyRollerIn
- * prints out manLeftJoyRollerIn. if manLeftJoyRollerIn is greater than .5, rollerMovingIn is set to true and rollerMovingOut is set to false. this makes the roller move in
- * if manLeftJoyRollerIn is less than -.5, rollerMovingIn is set to false and rollerMovingOut is set to true. this makes the roller move out
- * 
- * status of manLeftJoyRollerIn, intakeSensorReading, and rollerMovingIn are printed out
- * 
- * reads MAN_BUTTON_6. MAN_BUTTON_6 = manNoseControl
- * changes nosePneumatic to true and deployPneumatic to false when manNoseControl is true
- * 
- * reads DRV_BUTTON_6. DRV_BUTTON_6 = drvNoseControl
- * changes nosePneumatic to true and deployPneumatic to false when drvNoseControl is true
- * 
- * reads MAN_BUTTON_1. MAN_BUTTON_1 = manRollerInStartNew
- * toggles rollerMovingIn with manRollerInStartNew & manRollerInStartOld, stops intakeSensorReading from being true
- * 
+ *
+ * This class is an example of a subsystem. For the moment, it reads a digital sensor 
+ * and drives a digital output which turns on or off an LED.
+ *
  * Continue...
  */
 //expand this and edit if trouble with Ws
@@ -29,9 +14,11 @@ import org.wildstang.framework.io.Input;
 import org.wildstang.framework.io.inputs.AnalogInput;
 import org.wildstang.framework.io.inputs.DigitalInput;
 import org.wildstang.framework.io.outputs.AnalogOutput;
+import org.wildstang.framework.io.outputs.DigitalOutput;
 import org.wildstang.framework.subsystems.Subsystem;
 import org.wildstang.hardware.crio.outputs.WsDoubleSolenoid;
 import org.wildstang.hardware.crio.outputs.WsDoubleSolenoidState;
+import org.wildstang.hardware.crio.outputs.WsDigitalOutput;
 import org.wildstang.hardware.crio.outputs.WsSolenoid;
 import org.wildstang.yearly.robot.WSInputs;
 import org.wildstang.yearly.robot.WSOutputs;
@@ -41,40 +28,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class SubSystem_Template implements Subsystem
 {
    // add variables here
-
-   private boolean DigitalIO_0;
-   private boolean intakeSensorReading;
-   private boolean nosePneumatic;
-   private boolean deployPneumatic;
-   private boolean manRollerInOverride;
-   private boolean manNoseControl = false;
-   private boolean drvNoseControl = false;
-   private boolean manDeployPneumaticControl = false;
-   private boolean intakeLimboNew;
-   private boolean intakeLimboOld;
-   //private boolean limboOn = false;
-   private boolean shoot;
-   private WsDoubleSolenoid intakeDeploy;
-   private WsSolenoid intakeFrontLower;
-   private AnalogOutput frontRoller;
-   private AnalogOutput frontRoller2;
-   private double manLeftJoyRoller;
-   private double rollerSpeed;
-   private boolean AutoSubSystem_TemplateOverride = false;
-   private boolean ShotSubSystem_TemplateOverride = false;
-   
-   private double OverrideValue;
-   
-   
-   private double intakeSpeedIn;
-   private double intakeSpeedOut;
-   private double temp;
-   private static final String intakeSpeedKey = ".intakeSpeedVictor";
-   private static final double INTAKE_DEFAULT = 1;
-   private static final String intakeSpeedInKey = ".intakeSpeedIn";
-   private static final double INTAKE_IN_DEFAULT = -1;
-   private static final String intakeSpeedOutKey = ".intakeSpeedOut";
-   private static final double INTAKE_OUT_DEFAULT = 1;
+   private boolean TestSwitchSensor;
 
    @Override
    public void selfTest()
@@ -112,10 +66,10 @@ public class SubSystem_Template implements Subsystem
       //*********************************************************************************************
 
       // Setup any local variables with intial values
-      DigitalIO_0 = false;
+      TestSwitchSensor = false;
 
       // Register the sensors that this subsystem wants to be notified about
-      Core.getInputManager().getInput(WSInputs.DIO_0.getName()).addInputListener(this);
+      Core.getInputManager().getInput(WSInputs.TEST_SWITCH_SENSOR.getName()).addInputListener(this);
    }
 
    @Override
@@ -125,165 +79,33 @@ public class SubSystem_Template implements Subsystem
       // TODO Auto-generated method stub
       // 
       //*********************************************************************************************
-      // This method is called any time one of the registered inputs has changed. 
-      //*********************************************************************************************
+      // This method is called any time one of the registered inputs has changed. The software in 
+      // this method should do the following:
       // 
-      // TODO Auto-generated method stub
+      // 1.  Determine which registered input this method is beeing called with
+      // 2.  Read the updated value and store so it can be used in the update() method
+      //*********************************************************************************************
 
       // This section reads the input sensors and places them into local variables
-      if (source.getName().equals(WSInputs.DIO_0.getName()))
+      if (source.getName().equals(WSInputs.TEST_SWITCH_SENSOR.getName()))
       {
-         DigitalIO_0 = ((DigitalInput) source).getValue();
+         TestSwitchSensor = ((DigitalInput) source).getValue();
       }
    }
 
    @Override
    public void update()
    {
+      // 
       // TODO Auto-generated method stub
-
-      // does something with variables and Outputs
-
-      // tells status of certain variables
-      // System.out.println("shoot=" + shoot + " rollerSpeed= " + rollerSpeed);
-
-      // Puts the nose pneumatic in motion when either the drvNoseControl or
-      // man nose control are true
-//      if (drvNoseControl == true || manNoseControl == true)
-//      {
-//         nosePneumatic = true;
-//      }
-//      else
-//      {
-//         nosePneumatic = false;
-//      }
-      nosePneumatic = manNoseControl;
-
-      // toggles deployPneumatic to manDeployPneumaticControl
-      if (manDeployPneumaticControl == true)
-      {
-         deployPneumatic = true;
-         rollerSpeed = 0;
-      }
-      else
-      {
-         deployPneumatic = false;
-      }
-
-      // if you push the left joy stick up, the intake will roll outwards.
-      // if you push the left joy stick down, the intake will roll inwards.
-      if (manLeftJoyRoller <= -0.5)
-      {
-         rollerSpeed = intakeSpeedIn;
-      }
-      else if (manLeftJoyRoller >= 0.5)
-      {
-         rollerSpeed = intakeSpeedOut;
-      }
-      else
-      {
-         rollerSpeed = 0;
-      }
-
-      if (intakeSensorReading == true && rollerSpeed < 0)
-      {
-         rollerSpeed = 0;
-      }
-
-      if (manRollerInOverride == true)
-      {
-         rollerSpeed = intakeSpeedIn;
-      }
-
-      if (shoot == true)
-      {
-         rollerSpeed = intakeSpeedIn;
-      }
-
-      // Allows for toggling of limbo
-//      if (limboOn)
-//      {
-//         if (deployPneumatic == false)
-//         {
-//            deployPneumatic = true;
-//         }
-//         if(nosePneumatic == false)
-//         {
-//            nosePneumatic = true;
-//         }
-//      }
-
-      // buttonPress controls DIO_LED_0 etc.
-      // ((DigitalOutput)Core.getOutputManager().getOutput(WSOutputs.DIO_LED_0.getName())).setValue(manLeftJoyRollerIn
-      // >= .5);
-      // ((DigitalOutput)Core.getOutputManager().getOutput(WSOutputs.SENSOR_LED_1.getName())).setValue(intakeSensorReading);
-      // ((DigitalOutput)Core.getOutputManager().getOutput(WSOutputs.FRONT_ROLLER_LED_2.getName())).setValue(rollerMovingIn);
-      // ((DigitalOutput)Core.getOutputManager().getOutput(WSOutputs.Pneumatic_1.getName())).setValue(nosePneumatic);
-      // ((DigitalOutput)Core.getOutputManager().getOutput(WSOutputs.Pneumatic_2.getName())).setValue(deployPneumatic);
-      
-      
-      intakeDeploy.setValue(deployPneumatic ? (WsDoubleSolenoidState.FORWARD).ordinal() : (WsDoubleSolenoidState.REVERSE).ordinal());
-      intakeFrontLower.setValue(nosePneumatic);
-      if(AutoSubSystem_TemplateOverride && !intakeSensorReading)
-      {
-      frontRoller.setValue(OverrideValue);
-      frontRoller2.setValue(-OverrideValue);
-      }
-      else if(AutoSubSystem_TemplateOverride && intakeSensorReading)
-      {
-      frontRoller.setValue(0);
-      frontRoller2.setValue(0);
-      }
-      else if(ShotSubSystem_TemplateOverride)
-      {
-      frontRoller.setValue(OverrideValue);
-      frontRoller2.setValue(-OverrideValue);
-      }
-      else
-      {
-      frontRoller.setValue(rollerSpeed);
-      frontRoller2.setValue(-rollerSpeed);
-      }
-      SmartDashboard.putBoolean("Has Ball", intakeSensorReading);
-      SmartDashboard.putNumber("rollerSpeed=", rollerSpeed);
-      SmartDashboard.putBoolean("SubSystem_Template staged=", intakeSensorReading);
+      // 
+      //*********************************************************************************************
+      // This method is called after all of the registered updates have gone through the inputUpdate()
+      // method. The software in this method should do the following:
+      //
+      // 1. Update any vaiables based on the input variables
+      // 2. Tell the framework what the updated output values should be set to.
+      // 
+       ((DigitalOutput)Core.getOutputManager().getOutput(WSOutputs.TEST_LED.getName())).setValue(TestSwitchSensor);
    }
-   
-   public void notifyConfigChange(Config p_newConfig)
-   {
-      intakeSpeedIn = p_newConfig.getDouble(this.getClass().getName()
-            + intakeSpeedInKey, INTAKE_IN_DEFAULT);
-
-      intakeSpeedOut = p_newConfig.getDouble(this.getClass().getName()
-            + intakeSpeedOutKey, INTAKE_OUT_DEFAULT);
-
-   }
-
-   public boolean isDeployed()
-   {
-      return deployPneumatic;
-   }
-
-   public boolean isNoseDeployed()
-   {
-      return nosePneumatic;
-   }
-   public void setSubSystem_TemplateOverrideOn(boolean state)
-   {
-      AutoSubSystem_TemplateOverride = state;
-   }
-   public void SubSystem_TemplateValue(double value)
-   {
-      OverrideValue = value;
-   }
-   public void setShotOverride(boolean state)
-   {
-      ShotSubSystem_TemplateOverride = state;
-   }
-   public void shotOverride(boolean on)
-   {
-      if(on) OverrideValue = -1;
-      else OverrideValue = 0;
-   }
-
 }

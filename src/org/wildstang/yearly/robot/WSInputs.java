@@ -128,7 +128,7 @@ public enum WSInputs implements Inputs
          getLogging()),
    INTAKE_BOLDER_SENSOR("Intake Ball Staging", WSInputType.SWITCH,
          new WsDigitalInputConfig(8, false), getLogging()),
-   DIO_0("Digital IO 0", WSInputType.SWITCH,
+   TEST_SWITCH_SENSOR("Test Switch Sensor", WSInputType.SWITCH,
 	 new WsDigitalInputConfig(0, false), getLogging()),
    // INTAKE_BALL_DETECT("Intake ball detection", WSInputType.SWITCH, new
    // WsDigitalInputConfig(9, false), getLogging()),

@@ -1,6 +1,7 @@
 package org.wildstang.yearly.robot;
 
 import org.wildstang.framework.core.Subsystems;
+import org.wildstang.yearly.subsystems.SubSystem_Template;
 import org.wildstang.yearly.subsystems.Climber;
 import org.wildstang.yearly.subsystems.DriveBase;
 import org.wildstang.yearly.subsystems.Intake;
@@ -14,6 +15,7 @@ public enum WSSubsystems implements Subsystems
    //This keeps the formatter from completely making the enumeration unreadable.
    // @formatter::off
 //   MONITOR("Monitor", Monitor.class),
+   SUBSYSTEM_TEMPLATE("Subsystem Template", SubSystem_Template.class),
    INTAKE("Intake", Intake.class),
    SHOOTER("Shooter", Shooter.class),
    CLIMBER("Climber", Climber.class),

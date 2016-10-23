@@ -12,11 +12,14 @@ import org.wildstang.hardware.crio.outputs.config.WsI2COutputConfig;
 import org.wildstang.hardware.crio.outputs.config.WsRelayConfig;
 import org.wildstang.hardware.crio.outputs.config.WsSolenoidConfig;
 import org.wildstang.hardware.crio.outputs.config.WsVictorConfig;
+import org.wildstang.hardware.crio.outputs.config.WsDigitalOutputConfig;
 
 import edu.wpi.first.wpilibj.I2C;
 
 public enum WSOutputs implements Outputs
 {
+   TEST_LED("Test LED",	WSOutputType.DIGITAL_OUTPUT,    new WsDigitalOutputConfig(2, true), getLogging()),
+
    LEFT_1("Left motor 1",            WSOutputType.VICTOR,    new WsVictorConfig(0, 0.0), getLogging()),
    LEFT_2("Left motor 2",          WSOutputType.VICTOR,    new WsVictorConfig(1, 0.0), getLogging()),
    RIGHT_1("Right motor 1",              WSOutputType.VICTOR,    new WsVictorConfig(2, 0.0), getLogging()),
