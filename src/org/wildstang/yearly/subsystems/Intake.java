@@ -83,10 +83,10 @@ public class Intake implements Subsystem
       // does something with Inputs and variables
 
       // setting intakeSensorReading to DIO_0_INTAKE_SENSOR
-      if (source.getName().equals(WSInputs.INTAKE_BOLDER_SENSOR.getName()))
-      {
-         intakeSensorReading = ((DigitalInput) source).getValue();
-      }
+      //if (source.getName().equals(WSInputs.INTAKE_BOLDER_SENSOR.getName()))
+      //{
+      //   intakeSensorReading = ((DigitalInput) source).getValue();
+      //}
 
       // setting manLeftJoyRollerIn to the left joystick's y axis
       if (source.getName().equals(WSInputs.MAN_LEFT_JOYSTICK_Y.getName()))
@@ -168,7 +168,7 @@ public class Intake implements Subsystem
       Core.getInputManager().getInput(WSInputs.MAN_BUTTON_9.getName()).addInputListener(this);
       Core.getInputManager().getInput(WSInputs.DRV_BUTTON_2.getName()).addInputListener(this);
       Core.getInputManager().getInput(WSInputs.MAN_LEFT_JOYSTICK_Y.getName()).addInputListener(this);
-      Core.getInputManager().getInput(WSInputs.INTAKE_BOLDER_SENSOR.getName()).addInputListener(this);
+      //Core.getInputManager().getInput(WSInputs.INTAKE_BOLDER_SENSOR.getName()).addInputListener(this);
    }
 
    @Override

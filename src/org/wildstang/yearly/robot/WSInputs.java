@@ -126,16 +126,16 @@ public enum WSInputs implements Inputs
    MOTION_PROFILE_CONTROL("MotionProfileConfig",
          WSInputType.MOTION_PROFILE_CONTROL, new WsMotionProfileConfig(),
          getLogging()),
-   INTAKE_BOLDER_SENSOR("Intake Ball Staging", WSInputType.SWITCH,
-         new WsDigitalInputConfig(8, false), getLogging()),
+//   INTAKE_BOLDER_SENSOR("Intake Ball Staging", WSInputType.SWITCH,
+//         new WsDigitalInputConfig(8, false), getLogging()),
    TEST_SWITCH_SENSOR("Test Switch Sensor", WSInputType.SWITCH,
-	 new WsDigitalInputConfig(0, false), getLogging()),
+	 new WsDigitalInputConfig(6, false), getLogging());
    // INTAKE_BALL_DETECT("Intake ball detection", WSInputType.SWITCH, new
    // WsDigitalInputConfig(9, false), getLogging()),
-   RIGHT_ARM_TOUCHING("Right Lift arm touching", WSInputType.SWITCH,
-         new WsDigitalInputConfig(7, false), getLogging()),
-   LEFT_ARM_TOUCHING("Left Lift arm touching", WSInputType.SWITCH,
-         new WsDigitalInputConfig(6, false), getLogging());
+   //RIGHT_ARM_TOUCHING("Right Lift arm touching", WSInputType.SWITCH,
+   //      new WsDigitalInputConfig(7, false), getLogging()),
+   //LEFT_ARM_TOUCHING("Left Lift arm touching", WSInputType.SWITCH,
+   //      new WsDigitalInputConfig(6, false), getLogging());
 
    // LEFT_DRIVE_ENCODER
    // RIGHT_DRIVER_ENCODER

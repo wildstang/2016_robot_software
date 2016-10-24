@@ -103,9 +103,9 @@ public class SubSystem_Template implements Subsystem
       // This method is called after all of the registered updates have gone through the inputUpdate()
       // method. The software in this method should do the following:
       //
-      // 1. Update any vaiables based on the input variables
+      // 1. Update any variables based on the input variables
       // 2. Tell the framework what the updated output values should be set to.
       // 
-       ((DigitalOutput)Core.getOutputManager().getOutput(WSOutputs.TEST_LED.getName())).setValue(TestSwitchSensor);
+//       ((DigitalOutput)Core.getOutputManager().getOutput(WSOutputs.TEST_LED.getName())).setValue(TestSwitchSensor);
    }
 }
