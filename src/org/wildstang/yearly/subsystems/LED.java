@@ -29,8 +29,8 @@ public class LED implements Subsystem
    boolean m_antiTurbo;
    boolean m_turbo;
    boolean m_normal;
-   boolean m_shooter;
-   boolean m_intake;
+   //boolean m_shooter;
+   //boolean m_intake;
 
    /*
     * | Function      | Cmd  | PL 1 | PL 2 |
@@ -72,9 +72,9 @@ public class LED implements Subsystem
   
       Core.getInputManager().getInput(WSInputs.DRV_BUTTON_5.getName()).addInputListener(this);
       Core.getInputManager().getInput(WSInputs.DRV_BUTTON_8.getName()).addInputListener(this);
-      Core.getInputManager().getInput(WSInputs.MAN_BUTTON_6.getName()).addInputListener(this);
-      Core.getInputManager().getInput(WSInputs.MAN_BUTTON_7.getName()).addInputListener(this);
-      Core.getInputManager().getInput(WSInputs.MAN_BUTTON_8.getName()).addInputListener(this);
+      //Core.getInputManager().getInput(WSInputs.MAN_BUTTON_6.getName()).addInputListener(this);
+      //Core.getInputManager().getInput(WSInputs.MAN_BUTTON_7.getName()).addInputListener(this);
+      //Core.getInputManager().getInput(WSInputs.MAN_BUTTON_8.getName()).addInputListener(this);
    }
   
    @Override
@@ -134,23 +134,23 @@ public class LED implements Subsystem
                      break;
                }
                
-               if (m_shooter)
-               {
-                 m_ledOutput.setValue(shooter.getBytes());
-               }
-               
-               if (m_intake)
-               {
-                 m_ledOutput.setValue(intake.getBytes());
-               }
+               //if (m_shooter)
+               //{
+               //  m_ledOutput.setValue(shooter.getBytes());
+               //}
+               //
+               //if (m_intake)
+               //{
+               //  m_ledOutput.setValue(intake.getBytes());
+               //}
                
                }
                m_newDataAvailable = false;
             }
                SmartDashboard.putBoolean("Turbo", m_turbo);
                SmartDashboard.putBoolean("Antiturbo", m_antiTurbo);
-               SmartDashboard.putBoolean("Shooter", m_shooter);
-               SmartDashboard.putBoolean("Intake", m_intake);
+               //SmartDashboard.putBoolean("Shooter", m_shooter);
+               //SmartDashboard.putBoolean("Intake", m_intake);
          }
          else if (isRobotAuton)
          {
@@ -206,20 +206,20 @@ public class LED implements Subsystem
          m_turbo = ((DigitalInput) source).getValue();
       }
       
-      if (source.getName().equals(WSInputs.MAN_BUTTON_6.getName()))
-      {
-        m_shooter = ((DigitalInput) source).getValue();
-      }
-     
-      if (source.getName().equals(WSInputs.MAN_BUTTON_7.getName()))
-      {
-        m_intake = ((DigitalInput) source).getValue();
-      }
-      
-      if (source.getName().equals(WSInputs.MAN_BUTTON_8.getName()))
-      {
-        m_shooter = ((DigitalInput) source).getValue();
-      }
+      //if (source.getName().equals(WSInputs.MAN_BUTTON_6.getName()))
+      //{
+      //  m_shooter = ((DigitalInput) source).getValue();
+      //}
+      //
+      //if (source.getName().equals(WSInputs.MAN_BUTTON_7.getName()))
+      //{
+      //  m_intake = ((DigitalInput) source).getValue();
+      //}
+      //
+      //if (source.getName().equals(WSInputs.MAN_BUTTON_8.getName()))
+      //{
+      //  m_shooter = ((DigitalInput) source).getValue();
+      //}
       
       m_newDataAvailable = true;
    }

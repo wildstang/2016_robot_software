@@ -17,7 +17,7 @@ public class StepVisionAdjustment extends AutoStep
 
    public StepVisionAdjustment()
    {
-      this.rotateInt = ((Vision) Core.getSubsystemManager().getSubsystem(WSSubsystems.VISION.getName())).getRotateInt();
+      //this.rotateInt = ((Vision) Core.getSubsystemManager().getSubsystem(WSSubsystems.VISION.getName())).getRotateInt();
    }
    
    @Override
@@ -46,7 +46,7 @@ public class StepVisionAdjustment extends AutoStep
          return;
       }
 
-      rotateInt = ((Vision) Core.getSubsystemManager().getSubsystem(WSSubsystems.VISION.getName())).getRotateInt();
+      //rotateInt = ((Vision) Core.getSubsystemManager().getSubsystem(WSSubsystems.VISION.getName())).getRotateInt();
       if (rotateInt != 0)
       {
          

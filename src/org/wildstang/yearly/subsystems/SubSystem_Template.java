@@ -19,6 +19,7 @@ import org.wildstang.framework.subsystems.Subsystem;
 import org.wildstang.hardware.crio.outputs.WsDoubleSolenoid;
 import org.wildstang.hardware.crio.outputs.WsDoubleSolenoidState;
 import org.wildstang.hardware.crio.outputs.WsDigitalOutput;
+import org.wildstang.hardware.crio.outputs.WsServo;
 import org.wildstang.hardware.crio.outputs.WsSolenoid;
 import org.wildstang.yearly.robot.WSInputs;
 import org.wildstang.yearly.robot.WSOutputs;
@@ -28,7 +29,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class SubSystem_Template implements Subsystem
 {
    // add variables here
-   private boolean TestSwitchSensor;
+   private boolean 	TestSwitchSensor;
+   private double  	DrvJoystickRightY = 0.0;
+   private WsServo	Servo_0;
+   private WsServo	Servo_1;
+   private boolean 	DpadXLeft	= false;
+   private boolean 	DpadXRight	= false;
+   private double  	ServoPos_0	= 0.0;
+   private double  	ServoPos_1	= 0.0;
 
    @Override
    public void selfTest()
@@ -66,10 +74,20 @@ public class SubSystem_Template implements Subsystem
       //*********************************************************************************************
 
       // Setup any local variables with intial values
-      TestSwitchSensor = false;
+      TestSwitchSensor 	= false;
+      DrvJoystickRightY	= 0.0;
 
       // Register the sensors that this subsystem wants to be notified about
       Core.getInputManager().getInput(WSInputs.TEST_SWITCH_SENSOR.getName()).addInputListener(this);
+
+      Core.getInputManager().getInput(WSInputs.DRV_RIGHT_Y.getName()).addInputListener(this);
+      Core.getInputManager().getInput(WSInputs.DRV_DPAD_X_LEFT.getName()).addInputListener(this);
+      Core.getInputManager().getInput(WSInputs.DRV_DPAD_X_RIGHT.getName()).addInputListener(this);
+
+      Servo_0 = (WsServo) Core.getOutputManager().getOutput(WSOutputs.TEST_SERVO_0.getName());
+      Servo_1 = (WsServo) Core.getOutputManager().getOutput(WSOutputs.TEST_SERVO_1.getName());
+
+      //SmartDashboard.putNumber("ServoPos_1", ServoPos_1);
    }
 
    @Override
@@ -91,6 +109,22 @@ public class SubSystem_Template implements Subsystem
       {
          TestSwitchSensor = ((DigitalInput) source).getValue();
       }
+
+      if (source.getName().equals(WSInputs.DRV_RIGHT_Y.getName()))
+      {
+	  // -1.0 <= TestJoystickLeft<= 1.0
+	  DrvJoystickRightY= ((AnalogInput) source).getValue();
+      }
+
+      if (source.getName().equals(WSInputs.DRV_DPAD_X_LEFT.getName()))
+      {
+	  DpadXLeft= ((DigitalInput) source).getValue();
+      }
+
+      if (source.getName().equals(WSInputs.DRV_DPAD_X_RIGHT.getName()))
+      {
+	  DpadXRight= ((DigitalInput) source).getValue();
+      }
    }
 
    @Override
@@ -107,5 +141,24 @@ public class SubSystem_Template implements Subsystem
       // 2. Tell the framework what the updated output values should be set to.
       // 
 //       ((DigitalOutput)Core.getOutputManager().getOutput(WSOutputs.TEST_LED.getName())).setValue(TestSwitchSensor);
+       if (DpadXLeft == true)
+       {
+	   ServoPos_0 = 90.0;
+       }
+       else if (DpadXRight == true)
+       {
+	   ServoPos_0 = 45.0;
+       }
+       else
+	   ServoPos_0 = 0.0;
+
+       SmartDashboard.putBoolean("DpadXLeft", DpadXLeft);
+       SmartDashboard.putBoolean("DpadXRight", DpadXRight);
+       SmartDashboard.putNumber("ServoPos_0", ServoPos_0);
+
+       ServoPos_1 = SmartDashboard.getNumber("ServoPos_1", 90);
+
+       Servo_0.setValue(ServoPos_0);
+       Servo_1.setValue(ServoPos_1);
    }
 }

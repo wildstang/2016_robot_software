@@ -27,8 +27,8 @@ import org.wildstang.framework.logger.StateLogger;
 import org.wildstang.framework.timer.ProfilingTimer;
 import org.wildstang.hardware.crio.RoboRIOInputFactory;
 import org.wildstang.hardware.crio.RoboRIOOutputFactory;
-import org.wildstang.yearly.auto.programs.CornerShot;
-import org.wildstang.yearly.auto.programs.CrossingDefense;
+//import org.wildstang.yearly.auto.programs.CornerShot;
+//import org.wildstang.yearly.auto.programs.CrossingDefense;
 import org.wildstang.yearly.auto.programs.DriveAtp1;
 import org.wildstang.yearly.auto.programs.DriveAtp10;
 import org.wildstang.yearly.auto.programs.DriveAtp2;
@@ -39,16 +39,16 @@ import org.wildstang.yearly.auto.programs.DriveAtp6;
 import org.wildstang.yearly.auto.programs.DriveAtp7;
 import org.wildstang.yearly.auto.programs.DriveAtp8;
 import org.wildstang.yearly.auto.programs.DriveAtp9;
-import org.wildstang.yearly.auto.programs.FunctionTest;
-import org.wildstang.yearly.auto.programs.LowBarOneBall;
-import org.wildstang.yearly.auto.programs.VisionTest;
+//import org.wildstang.yearly.auto.programs.FunctionTest;
+//import org.wildstang.yearly.auto.programs.LowBarOneBall;
+//import org.wildstang.yearly.auto.programs.VisionTest;
 import org.wildstang.yearly.subsystems.DriveBase;
-import org.wildstang.yearly.subsystems.Intake;
-import org.wildstang.yearly.subsystems.Shooter;
+//import org.wildstang.yearly.subsystems.Intake;
+//import org.wildstang.yearly.subsystems.Shooter;
 
 import com.ni.vision.NIVision.Image;
 
-import edu.wpi.first.wpilibj.CameraServer;
+//import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -78,7 +78,7 @@ public class RobotTemplate extends IterativeRobot
 
    static boolean teleopPerodicCalled = false;
    
-   CameraServer server;
+   //CameraServer server;
 
    private void startloggingState()
    {
@@ -187,14 +187,14 @@ public class RobotTemplate extends IterativeRobot
 //      AutoManager.getInstance().addProgram(new OneBallMoatRampart());
 //      AutoManager.getInstance().addProgram(new HarpoonAuto());
 //      AutoManager.getInstance().addProgram(new TwoBall());
-      AutoManager.getInstance().addProgram(new CrossingDefense());
+//      AutoManager.getInstance().addProgram(new CrossingDefense());
 //      AutoManager.getInstance().addProgram(new SpyShotCross());
 //      AutoManager.getInstance().addProgram(new CornerAvoid());
-      AutoManager.getInstance().addProgram(new LowBarOneBall());
+//      AutoManager.getInstance().addProgram(new LowBarOneBall());
 //      AutoManager.getInstance().addProgram(new LowBarLowGoal());
-      AutoManager.getInstance().addProgram(new VisionTest());
-      AutoManager.getInstance().addProgram(new CornerShot());
-      AutoManager.getInstance().addProgram(new FunctionTest());
+//      AutoManager.getInstance().addProgram(new VisionTest());
+//      AutoManager.getInstance().addProgram(new CornerShot());
+//      AutoManager.getInstance().addProgram(new FunctionTest());
       AutoManager.getInstance().addProgram(new DriveAtp1());
       AutoManager.getInstance().addProgram(new DriveAtp2());
       AutoManager.getInstance().addProgram(new DriveAtp3());
@@ -209,10 +209,10 @@ public class RobotTemplate extends IterativeRobot
       s_log.logp(Level.ALL, this.getClass().getName(), "robotInit", "Startup Completed");
       startupTimer.endTimingSection();
       
-      server = CameraServer.getInstance();
-      server.setQuality(15);
-      server.setSize(2);
-      server.startAutomaticCapture("cam0");
+      //server = CameraServer.getInstance();
+      //server.setQuality(15);
+      //server.setSize(2);
+      //server.startAutomaticCapture("cam0");
 
    }
 
@@ -339,9 +339,9 @@ public class RobotTemplate extends IterativeRobot
    {
       if (firstRun)
       {
-         ((Shooter) Core.getSubsystemManager().getSubsystem(WSSubsystems.SHOOTER.getName())).shooterOverride(false);
-         ((Intake) Core.getSubsystemManager().getSubsystem(WSSubsystems.INTAKE.getName())).setIntakeOverrideOn(false);
-         ((Intake) Core.getSubsystemManager().getSubsystem(WSSubsystems.INTAKE.getName())).setShotOverride(false);
+         //((Shooter) Core.getSubsystemManager().getSubsystem(WSSubsystems.SHOOTER.getName())).shooterOverride(false);
+         //((Intake) Core.getSubsystemManager().getSubsystem(WSSubsystems.INTAKE.getName())).setIntakeOverrideOn(false);
+         //((Intake) Core.getSubsystemManager().getSubsystem(WSSubsystems.INTAKE.getName())).setShotOverride(false);
          ((DriveBase) Core.getSubsystemManager().getSubsystem(WSSubsystems.DRIVE_BASE.getName())).resetLeftEncoder();
          ((DriveBase) Core.getSubsystemManager().getSubsystem(WSSubsystems.DRIVE_BASE.getName())).resetRightEncoder();
          ((DriveBase) Core.getSubsystemManager().getSubsystem(WSSubsystems.DRIVE_BASE.getName())).setSuperDriveOverride(false);

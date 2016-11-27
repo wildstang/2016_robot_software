@@ -7,45 +7,52 @@ import org.wildstang.framework.io.outputs.OutputType;
 import org.wildstang.hardware.crio.outputs.WSOutputType;
 import org.wildstang.hardware.crio.outputs.WsDoubleSolenoidState;
 import org.wildstang.hardware.crio.outputs.WsRelayState;
+import org.wildstang.hardware.crio.outputs.config.WsDigitalOutputConfig;
 import org.wildstang.hardware.crio.outputs.config.WsDoubleSolenoidConfig;
 import org.wildstang.hardware.crio.outputs.config.WsI2COutputConfig;
 import org.wildstang.hardware.crio.outputs.config.WsRelayConfig;
+import org.wildstang.hardware.crio.outputs.config.WsServoConfig;
 import org.wildstang.hardware.crio.outputs.config.WsSolenoidConfig;
+import org.wildstang.hardware.crio.outputs.config.WsTalonConfig;
 import org.wildstang.hardware.crio.outputs.config.WsVictorConfig;
-import org.wildstang.hardware.crio.outputs.config.WsDigitalOutputConfig;
 
 import edu.wpi.first.wpilibj.I2C;
 
 public enum WSOutputs implements Outputs
 {
-   TEST_LED("Test LED",	WSOutputType.DIGITAL_OUTPUT,    new WsDigitalOutputConfig(7, true), getLogging()),
+//   TEST_LED("Test LED",	WSOutputType.DIGITAL_OUTPUT,    new WsDigitalOutputConfig(7, true), getLogging()),
 
    LEFT_1("Left motor 1",            WSOutputType.VICTOR,    new WsVictorConfig(0, 0.0), getLogging()),
    LEFT_2("Left motor 2",          WSOutputType.VICTOR,    new WsVictorConfig(1, 0.0), getLogging()),
    RIGHT_1("Right motor 1",              WSOutputType.VICTOR,    new WsVictorConfig(2, 0.0), getLogging()),
    RIGHT_2("Right motor 2",            WSOutputType.VICTOR,    new WsVictorConfig(3, 0.0), getLogging()),
+
+   TEST_SERVO_0("Test Servo 0",            WSOutputType.SERVO,    new WsServoConfig(8, 0.0), getLogging()),
+   TEST_SERVO_1("Test Servo 1",            WSOutputType.SERVO,    new WsServoConfig(9, 0.0), getLogging()),
    
-   SHOOTER("Shooter flywheel",     WSOutputType.VICTOR,    new WsVictorConfig(6, 0.0), getLogging()),
-   WINCH_LEFT("Left Winch", WSOutputType.VICTOR, new WsVictorConfig(4, 0.0), getLogging()),
-   WINCH_RIGHT("Right Winch", WSOutputType.VICTOR, new WsVictorConfig(5, 0.0), getLogging()),
-   FRONT_ROLLER("Front intake roller",     WSOutputType.VICTOR,    new WsVictorConfig(7, 0.0), getLogging()),
-   FRONT_ROLLER_2("Front intake roller2",     WSOutputType.VICTOR,    new WsVictorConfig(8, 0.0), getLogging()),
+   //SHOOTER("Shooter flywheel",     WSOutputType.VICTOR,    new WsVictorConfig(6, 0.0), getLogging()),
+   //WINCH_LEFT("Left Winch", WSOutputType.VICTOR, new WsVictorConfig(4, 0.0), getLogging()),
+   //WINCH_RIGHT("Right Winch", WSOutputType.VICTOR, new WsVictorConfig(5, 0.0), getLogging()),
+   //FRONT_ROLLER("Front intake roller",     WSOutputType.VICTOR,    new WsVictorConfig(7, 0.0), getLogging()),
+   //FRONT_ROLLER_2("Front intake roller2",     WSOutputType.VICTOR,    new WsVictorConfig(8, 0.0), getLogging()),
    
    LED("LEDs", WSOutputType.I2C, new WsI2COutputConfig(I2C.Port.kMXP, 0x10), true),
-   RING_LIGHT("Light", WSOutputType.RELAY, new WsRelayConfig(0, WsRelayState.RELAY_ON), getLogging()),
+   //RING_LIGHT("Light", WSOutputType.RELAY, new WsRelayConfig(0, WsRelayState.RELAY_ON), getLogging()),
+
    // Solenoids
-   
-   SHIFTER("Shifter double solenoid", WSOutputType.SOLENOID_DOUBLE, new WsDoubleSolenoidConfig(1, 0, 1, WsDoubleSolenoidState.FORWARD), getLogging()),
-   INTAKE_DEPLOY("Intake deploy", WSOutputType.SOLENOID_DOUBLE, new WsDoubleSolenoidConfig(1, 2, 7, WsDoubleSolenoidState.REVERSE), getLogging()),
-   INTAKE_FRONT_LOWER("Intake front lower", WSOutputType.SOLENOID_SINGLE, new WsSolenoidConfig(1, 3, false), getLogging()),
+   //INTAKE_DEPLOY("Intake deploy", WSOutputType.SOLENOID_DOUBLE, new WsDoubleSolenoidConfig(1, 2, 7, WsDoubleSolenoidState.REVERSE), getLogging()),
+   //INTAKE_FRONT_LOWER("Intake front lower", WSOutputType.SOLENOID_SINGLE, new WsSolenoidConfig(1, 3, false), getLogging()),
 //   LOWER_ARM("Lower Lift Arm", WSOutputType.SOLENOID_SINGLE, new WsSolenoidConfig(1, 4, false), getLogging()),
 //   UPPER_ARM("Upper Lift Arm", WSOutputType.SOLENOID_SINGLE, new WsSolenoidConfig(1, 5, false), getLogging()),
-   LEFT_BRAKE("Left Winch Brake", WSOutputType.SOLENOID_SINGLE, new WsSolenoidConfig(1, 4, false), getLogging()),
-   RIGHT_BRAKE("Right Winch Brake", WSOutputType.SOLENOID_SINGLE, new WsSolenoidConfig(1, 5, false), getLogging()),
-   HOOK_EXTENSION("Hook Extenstion", WSOutputType.SOLENOID_SINGLE, new WsSolenoidConfig(1, 6, false), getLogging()),
-   SHOOTER_HOOD("Shooter Hood", WSOutputType.SOLENOID_DOUBLE, new WsDoubleSolenoidConfig(2, 0, 1, WsDoubleSolenoidState.REVERSE), getLogging()),
+   //LEFT_BRAKE("Left Winch Brake", WSOutputType.SOLENOID_SINGLE, new WsSolenoidConfig(1, 4, false), getLogging()),
+   //RIGHT_BRAKE("Right Winch Brake", WSOutputType.SOLENOID_SINGLE, new WsSolenoidConfig(1, 5, false), getLogging()),
+   //HOOK_EXTENSION("Hook Extenstion", WSOutputType.SOLENOID_SINGLE, new WsSolenoidConfig(1, 6, false), getLogging()),
+   //SHOOTER_HOOD("Shooter Hood", WSOutputType.SOLENOID_DOUBLE, new WsDoubleSolenoidConfig(2, 0, 1, WsDoubleSolenoidState.REVERSE), getLogging()),
 //   WINCH_BRAKE("Stop the winches",             WSOutputType.SOLENOID_SINGLE, new WsSolenoidConfig(2, 3, false), getLogging());
-   ARMS("Both Arms", WSOutputType.SOLENOID_SINGLE, new WsSolenoidConfig(2, 3, false), getLogging());
+//   ARMS("Both Arms", WSOutputType.SOLENOID_SINGLE, new WsSolenoidConfig(2, 3, false), getLogging());
+
+
+   SHIFTER("Shifter double solenoid", WSOutputType.SOLENOID_DOUBLE, new WsDoubleSolenoidConfig(1, 0, 1, WsDoubleSolenoidState.FORWARD), getLogging());
    
    private String m_name;
    private OutputType m_type;

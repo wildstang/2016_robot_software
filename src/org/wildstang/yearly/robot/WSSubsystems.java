@@ -2,11 +2,11 @@ package org.wildstang.yearly.robot;
 
 import org.wildstang.framework.core.Subsystems;
 import org.wildstang.yearly.subsystems.SubSystem_Template;
-import org.wildstang.yearly.subsystems.Climber;
+//import org.wildstang.yearly.subsystems.Climber;
 import org.wildstang.yearly.subsystems.DriveBase;
-import org.wildstang.yearly.subsystems.Intake;
-import org.wildstang.yearly.subsystems.Shooter;
-import org.wildstang.yearly.subsystems.Vision;
+//import org.wildstang.yearly.subsystems.Intake;
+//import org.wildstang.yearly.subsystems.Shooter;
+//import org.wildstang.yearly.subsystems.Vision;
 
 public enum WSSubsystems implements Subsystems
 {
@@ -16,11 +16,11 @@ public enum WSSubsystems implements Subsystems
    // @formatter::off
 //   MONITOR("Monitor", Monitor.class),
    SUBSYSTEM_TEMPLATE("Subsystem Template", SubSystem_Template.class),
-   INTAKE("Intake", Intake.class),
-   SHOOTER("Shooter", Shooter.class),
-   CLIMBER("Climber", Climber.class),
-   DRIVE_BASE("Drive Base", DriveBase.class),
-   VISION("Vision", Vision.class);
+//   INTAKE("Intake", Intake.class),
+//   SHOOTER("Shooter", Shooter.class),
+//   CLIMBER("Climber", Climber.class),
+   DRIVE_BASE("Drive Base", DriveBase.class);
+//   VISION("Vision", Vision.class);
 //   ENCODER_TEST("Encoder Test", EncoderTest.class);
    
    //DO NOT REMOVE THIS COMMENT.  DO NOT PLACE ANY ENUMERATION DEFINITIONS AFTER IT.
